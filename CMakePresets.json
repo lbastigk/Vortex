@@ -1,0 +1,176 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "displayName": "Base Configuration",
+            "description": "Base configuration with common settings",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/tmp/build_${presetName}",
+            "installDir": "${sourceDir}/bin",
+            "warnings": {
+                "unusedCli": false
+            },
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "SDLTTF_VENDORED": "ON",
+                "CMAKE_SUPPRESS_DEVELOPER_WARNINGS": "TRUE"
+            }
+        },
+        {
+            "name": "linux-debug",
+            "inherits": "base",
+            "displayName": "Linux Debug",
+            "description": "Debug build for Linux",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_FLAGS": "-ftime-trace=${sourceDir}/tmp/trace_${presetName}.json",
+                "CMAKE_C_COMPILER": "/usr/bin/clang",
+                "CMAKE_CXX_COMPILER": "/usr/bin/clang++"
+            }
+        },
+        {
+            "name": "linux-release",
+            "inherits": "base",
+            "displayName": "Linux Release",
+            "description": "Release build for Linux with optimizations",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_FLAGS": "-O3 -DNDEBUG -march=native -mtune=native -flto=auto -fno-semantic-interposition -fomit-frame-pointer -fuse-linker-plugin -fvisibility=hidden -fvisibility-inlines-hidden -finline-functions -fpredictive-commoning",
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "ON",
+                "CMAKE_C_COMPILER": "/usr/bin/gcc",
+                "CMAKE_CXX_COMPILER": "/usr/bin/g++"
+            }
+        },
+        {
+            "name": "linux-profiling",
+            "inherits": "base",
+            "displayName": "Linux Profile",
+            "description": "Optimized build with debug symbols for profiling",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Profiling",
+                "CMAKE_CXX_FLAGS": "-O3 -g -fno-omit-frame-pointer -march=native",
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "OFF",
+                "CMAKE_C_COMPILER": "/usr/bin/gcc",
+                "CMAKE_CXX_COMPILER": "/usr/bin/g++"
+            }
+        },
+        {
+            "name": "linux-coverage",
+            "inherits": "base",
+            "displayName": "Linux Coverage",
+            "description": "Coverage build for Linux",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/usr/bin/gcc",
+                "CMAKE_CXX_COMPILER": "/usr/bin/g++",
+                "CMAKE_BUILD_TYPE": "Coverage"
+            }
+        },
+        {
+            "name": "windows-debug",
+            "inherits": "base",
+            "displayName": "Windows Debug",
+            "description": "Debug build for Windows (native Windows or cross-compilation via MinGW)",
+            "toolchainFile": "${sourceDir}/Tools/CMake/Toolchains/windows-mingw.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_C_FLAGS": "-Wa,-mbig-obj",
+                "CMAKE_CXX_FLAGS": "-Wa,-mbig-obj",
+                "CMAKE_ASM_FLAGS": "-Wa,-mbig-obj"
+            }
+        },
+        {
+            "name": "windows-release",
+            "inherits": "base",
+            "displayName": "Windows Release",
+            "description": "Release build for Windows (native Windows or cross-compilation via MinGW)",
+            "toolchainFile": "${sourceDir}/Tools/CMake/Toolchains/windows-mingw.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "ON"
+            }
+        },
+        {
+            "name": "macos-debug",
+            "inherits": "base",
+            "displayName": "macOS Debug",
+            "description": "Debug build for macOS (native macOS or cross-compilation via osxcross)",
+            "toolchainFile": "${sourceDir}/Tools/CMake/Toolchains/macos-cross.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "macos-release",
+            "inherits": "base",
+            "displayName": "macOS Release", 
+            "description": "Release build for macOS (native macOS or cross-compilation via osxcross)",
+            "toolchainFile": "${sourceDir}/Tools/CMake/Toolchains/macos-cross.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "ON"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "linux-debug",
+            "configurePreset": "linux-debug",
+            "displayName": "Build Linux Debug",
+            "description": "Build Linux debug binary",
+            "jobs": 0
+        },
+        {
+            "name": "linux-release",
+            "configurePreset": "linux-release",
+            "displayName": "Build Linux Release",
+            "description": "Build Linux release binary",
+            "jobs": 0
+        },
+        {
+            "name": "linux-coverage",
+            "configurePreset": "linux-coverage",
+            "displayName": "Build Linux Coverage",
+            "description": "Build Linux coverage binary",
+            "jobs": 0
+        },
+        {
+            "name": "linux-profiling",
+            "configurePreset": "linux-profiling",
+            "displayName": "Build Linux Profiling",
+            "description": "Build Linux profiling binary",
+            "jobs": 0
+        },
+        {
+            "name": "windows-debug",
+            "configurePreset": "windows-debug",
+            "displayName": "Build Windows Debug",
+            "description": "Build Windows debug binary",
+            "jobs": 0
+        },
+        {
+            "name": "windows-release",
+            "configurePreset": "windows-release",
+            "displayName": "Build Windows Release",
+            "description": "Build Windows release binary",
+            "jobs": 0
+        },
+        {
+            "name": "macos-debug",
+            "configurePreset": "macos-debug",
+            "displayName": "Build macOS Debug",
+            "description": "Build macOS debug binary",
+            "jobs": 0
+        },
+        {
+            "name": "macos-release",
+            "configurePreset": "macos-release",
+            "displayName": "Build macOS Release",
+            "description": "Build macOS release binary",
+            "jobs": 0
+        }
+    ]
+}
