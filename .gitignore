@@ -1,13 +1,5 @@
 .vscode/
 
 tmp/*
-<<<<<<< HEAD
 external/*
 bin/*
-<<<<<<< HEAD
-=======
-./bin/*
-=======
-external/*
->>>>>>> 7e7988dfe058044528fb26f14b020b01b32139c2
->>>>>>> 2310f44bbeeb70da96322a759a09ce9ba4f582fe
