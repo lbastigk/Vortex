@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <cstdint>
 #include <print>
 
@@ -42,5 +43,11 @@ int main() {
     SDL_DestroyWindow(window);
     SDL_Quit();
 
+=======
+#include <print>
+
+int main() {
+    std::println("Hello, Client!");
+>>>>>>> 7e7988dfe058044528fb26f14b020b01b32139c2
     return 0;
 }
