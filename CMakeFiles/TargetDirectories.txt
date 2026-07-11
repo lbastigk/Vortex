@@ -1,0 +1,3 @@
+/media/leo/fedora_data/Projects/Vortex/CMakeFiles/Main.cpp.dir
+/media/leo/fedora_data/Projects/Vortex/CMakeFiles/edit_cache.dir
+/media/leo/fedora_data/Projects/Vortex/CMakeFiles/rebuild_cache.dir

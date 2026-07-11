@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/media/leo/fedora_data/Projects/Vortex/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
